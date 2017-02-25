@@ -1827,7 +1827,7 @@ static VectorType *isVectorPromotionViable(Partition &P, const DataLayout &DL) {
 
     // Rank the remaining candidate vector types. This is easy because we know
     // they're all integer vectors. We sort by ascending number of elements.
-    auto RankVectorTypes = [&DL](VectorType *RHSTy, VectorType *LHSTy) {
+    auto RankVectorTypes = [](VectorType *RHSTy, VectorType *LHSTy) {
       assert(DL.getTypeSizeInBits(RHSTy) == DL.getTypeSizeInBits(LHSTy) &&
              "Cannot have vector types of different sizes!");
       assert(RHSTy->getElementType()->isIntegerTy() &&

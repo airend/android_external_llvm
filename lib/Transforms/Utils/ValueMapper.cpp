@@ -698,7 +698,7 @@ void MDNodeMapper::mapNodesInPOT(UniquedGraph &G) {
 
     // Clone the uniqued node and remap the operands.
     TempMDNode ClonedN = D.Placeholder ? std::move(D.Placeholder) : N->clone();
-    remapOperands(*ClonedN, [this, &D, &G](Metadata *Old) {
+    remapOperands(*ClonedN, [this, &G](Metadata *Old) {
       if (Optional<Metadata *> MappedOp = getMappedOp(Old))
         return *MappedOp;
       assert(G.Info[Old].ID > D.ID && "Expected a forward reference");

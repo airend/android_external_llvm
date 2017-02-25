@@ -524,7 +524,7 @@ void Vectorizer::collectInstructions(BasicBlock *BB) {
         continue;
 
       // Make sure all the users of a vector are constant-index extracts.
-      if (isa<VectorType>(Ty) && !all_of(LI->users(), [LI](const User *U) {
+      if (isa<VectorType>(Ty) && !all_of(LI->users(), [](const User *U) {
             const Instruction *UI = cast<Instruction>(U);
             return isa<ExtractElementInst>(UI) &&
                    isa<ConstantInt>(UI->getOperand(1));
@@ -557,7 +557,7 @@ void Vectorizer::collectInstructions(BasicBlock *BB) {
       if (TySize > VecRegSize / 2)
         continue;
 
-      if (isa<VectorType>(Ty) && !all_of(SI->users(), [SI](const User *U) {
+      if (isa<VectorType>(Ty) && !all_of(SI->users(), [](const User *U) {
             const Instruction *UI = cast<Instruction>(U);
             return isa<ExtractElementInst>(UI) &&
                    isa<ConstantInt>(UI->getOperand(1));
