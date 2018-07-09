@@ -1008,7 +1008,7 @@ public:
 private:
   const coff_base_reloc_block_header *Header;
   uint32_t Index;
-  const COFFObjectFile *OwningObject;
+  const COFFObjectFile *OwningObject LLVM_ATTRIBUTE_UNUSED;
 };
 
 // Corresponds to `_FPO_DATA` structure in the PE/COFF spec.
